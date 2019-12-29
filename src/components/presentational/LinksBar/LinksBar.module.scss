@@ -1,0 +1,61 @@
+@import "../../../styles/vars";
+.list {
+  @include flex-center;
+  justify-content: stretch;
+  padding-top: 10px;
+}
+.link {
+  padding: 5px 0;
+  border-radius: 10px 10px 0 0;
+  border: $link-border;
+  background-color: $main-color;
+  list-style: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $forth-color;
+  flex-grow: 1;
+  text-align: center;
+  box-sizing: border-box;
+  @include flex-center;
+  &.disabled {
+    pointer-events: none;
+    color: $third-color;
+    border: $disabled-link-border;
+    border-bottom: $link-border;
+    cursor: not-allowed;
+  }
+  &.active {
+    font-weight: bold;
+    border-bottom: $active-link-border;
+  }
+  .additionInfo {
+    font-style: italic;
+    font-size: 0.9em;
+  }
+}
+
+
+@media screen and (max-width: $max-width) {
+  .list {
+    flex-direction: column;
+    padding-top: initial;
+    padding-left: 10px;
+    .link {
+      padding: 0 5px;
+      border-radius: 10px 0 0 10px;
+      border-bottom: $link-border;
+      border-right: none;
+      width: 100%;
+      &.disabled {
+        border-bottom: $disabled-link-border;
+        border-right: $link-border;
+        cursor: not-allowed;
+      }
+      &.active {
+        font-weight: bold;
+        border-right: $active-link-border;
+        border-bottom: $link-border;
+      }
+    }
+  }
+}

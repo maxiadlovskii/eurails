@@ -16,6 +16,7 @@ $price-height: 48px;
 $main-color: white;
 $secondary-color: #e2e3ea;
 $third-color: gray;
+$forth-color: #291E04;
 
 
 @keyframes progress {
@@ -43,3 +44,8 @@ $third-color: gray;
     animation: progress 1s ease-in-out infinite;
   }
 }
+
+$link-border: 1px solid $forth-color;
+$disabled-link-border: 1px solid $third-color;
+$active-link-border: 1px solid $main-color;
+$max-width: 800px;
