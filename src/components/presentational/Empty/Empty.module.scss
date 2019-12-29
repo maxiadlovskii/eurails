@@ -1,0 +1,5 @@
+@import "../../../styles/vars";
+.wrapper {
+  @include flex-center;
+  @include fill-all;
+}

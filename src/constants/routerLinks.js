@@ -1,6 +1,5 @@
 export const links = {
-    LIST: '/list',
-    DASHBOARD: '/dashboard'
+    LIST: '/list'
 };
 
 export const linkParams = {
