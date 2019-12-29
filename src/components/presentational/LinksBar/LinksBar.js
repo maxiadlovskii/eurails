@@ -2,9 +2,11 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import styles from './LinksBar.module.scss';
 import classNames from 'classnames';
+import {Loader} from "../../common/Loader/Loader";
+import {skeletons} from "../../../constants";
 
-export const LinksBar = ({ list }) => <nav className={styles.list}>
-    { list.map( ({name, additionInfo, link, disabled }) => (
+export const LinksBar = ({ list, isFetching }) => <nav className={styles.list}>
+    { isFetching ? <Loader type={skeletons.LINE}/> : list.map( ({name, additionInfo, link, disabled }) => (
         <NavLink
             activeClassName={styles.active}
             className={classNames(styles.link, {[styles.disabled]: !!disabled})}

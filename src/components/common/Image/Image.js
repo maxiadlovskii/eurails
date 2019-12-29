@@ -13,7 +13,11 @@ export const Image = ({ src, width, heightRation = 100 }) => {
         backgroundImage: isLoaded ? `url(${src})` : 'none',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover'
-    }}>{
-        !isLoaded && <div className={styles.loader}><Loader type={skeletons.IMAGE}/></div>
-    }</div>
+    }}>
+        {
+            !isLoaded && <div className={styles.loader}>
+            <Loader type={skeletons.IMAGE}/>
+        </div>
+        }
+    </div>
 };

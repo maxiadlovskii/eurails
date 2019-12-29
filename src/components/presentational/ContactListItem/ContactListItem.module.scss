@@ -1,0 +1,11 @@
+@import "../../../styles/vars";
+
+.wrapper {
+  border-bottom: 1px solid $third-color;
+  margin: 10px;
+  cursor: pointer;
+}
+.name {
+  @include flex-center;
+  padding: 10px 20px;
+}

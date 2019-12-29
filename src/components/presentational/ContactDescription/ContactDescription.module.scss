@@ -1,0 +1,55 @@
+@import "../../../styles/vars";
+
+.wrapper {
+  min-width: 200px;
+  min-height: 300px;
+  display: flex;
+  position: relative;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+}
+
+
+.header {
+  color: $third-color;
+  font-size: 1.2em;
+  .lastName {
+    text-transform: uppercase;
+  }
+}
+.additionInfo {
+  padding-inline-start: 0;
+}
+.additionItem {
+  list-style: none;
+  .name {
+    font-weight: bold;
+  }
+  .value {
+    font-style: italic;
+  }
+}
+
+.userName {
+  position: absolute;
+  padding: 5px;
+  background-color: $alert;
+  color: $main-color;
+  border-radius: 5px;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  left: 100%;
+  top: -15px;
+  display: flex;
+}
+
+@media screen and (max-width: $max-width) {
+  .wrapper{
+    align-items: center;
+    flex-direction: column;
+  }
+}

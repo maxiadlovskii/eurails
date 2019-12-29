@@ -17,7 +17,7 @@ $main-color: white;
 $secondary-color: #e2e3ea;
 $third-color: gray;
 $forth-color: #291E04;
-
+$alert: red;
 
 @keyframes progress {
   0% {
@@ -45,7 +45,14 @@ $forth-color: #291E04;
   }
 }
 
+@mixin grid(){
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px 10px;
+}
 $link-border: 1px solid $forth-color;
 $disabled-link-border: 1px solid $third-color;
 $active-link-border: 1px solid $main-color;
 $max-width: 800px;
+$max-item-width: 300px;
+$max-nav-height: 50px;
