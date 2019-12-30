@@ -1,0 +1,13 @@
+@import "../../../styles/vars";
+
+.list {
+  @include grid;
+  max-height: calc(100vh - #{$max-nav-height});
+  overflow: auto;
+}
+
+@media screen and (max-width: $max-width) {
+  .list {
+    max-height: 100vh;
+  }
+}

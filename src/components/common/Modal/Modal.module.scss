@@ -1,0 +1,25 @@
+@import "../../../styles/vars";
+.wrapper {
+  position: fixed;
+  left: 15px;
+  padding: 15px;
+  @include box-shadow;
+  border-radius: 15px;
+  background-color: $main-color;
+  z-index: 1;
+  display: block;
+  .close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    @include flex-center;
+    z-index: 2;
+  }
+}
+
+.hide {
+  display: none;
+}

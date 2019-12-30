@@ -8,6 +8,7 @@ import '../../styles/global.module.scss'
 import { EmptyPage } from './Empty/Empty'
 import { ContactListPage } from "./ContactList/ContactList";
 import App from '../containers/App'
+import {skeletons} from "../../constants";
 
 const routes = [
     { path: `${links.LIST}/:${linkParams.LETTER}`, component: ContactListPage},
@@ -18,13 +19,20 @@ const  MainRoute = ({ isFailed, isFetching, isSucceed }) => {
     return (
             <Switch>
                 {routes.map(({ path, component }) => {
-                    const Component = component;
+                    const Component = isFetching
+                        ? () => <Loader type={skeletons.CONTACT_LIST}/>
+                        : isSucceed
+                            ? component
+                            : isFailed
+                                ? Failed
+                                : null;
                     return <Route key={path} path={path} component={Component}/>})}
                 <Redirect to={links.LIST}/>
             </Switch>
     )};
 
-const mapStateToProps = () => ({
+const mapStateToProps = ({ contacts: { isFailed, isFetching, isSucceed } }) => ({
+    isFailed, isFetching, isSucceed
 });
 
 const mapDispatchToProps = {
