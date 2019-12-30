@@ -4,32 +4,50 @@ import {ContactList} from "../presentational/ContactList/ContactList";
 import {useRouter} from "../../hooks";
 import { linkParams } from '.././../constants/routerLinks'
 import { mapContact } from '../../utils'
+import {ContactDescription} from "../presentational/ContactDescription/ContactDescription";
 
 const  ContactListContainer= ({ collection }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedContact, setSelectedContact] = useState(null);
+    const [list, setList] = useState([]);
     const {
         match: {
         params: { [linkParams.LETTER]: letter }
     }} = useRouter();
     const closeModal = () => {
         isModalVisible && setIsModalVisible(false);
-        setSelectedContact(null)
+        setSelectedContact !== null && setSelectedContact(null)
     };
     const openModal = () => {
         !isModalVisible && setIsModalVisible(true);
     };
-    useEffect(closeModal, [letter]);
+
+    useEffect(()=>{
+        closeModal();
+        setList(collection.get(letter))
+    }, [letter]);
+    const onNext = () => {
+        setSelectedContact(selectedContact + 1)
+    };
+    const onPrev = () => {
+        setSelectedContact(selectedContact - 1)
+    };
     const onItemClick = path => {
         openModal();
-        setSelectedContact(mapContact(collection.get(letter)[path]));
+        path !== selectedContact && setSelectedContact(path);
     };
+    const getContactInfo = () => selectedContact !== null && mapContact(collection.get(letter)[selectedContact]);
     return <ContactList
         isModalVisible={isModalVisible}
         onModalClose={closeModal}
-        list={collection.get(letter)}
+        list={list}
         onItemClick={onItemClick}
-        selectedContact={selectedContact}
+        selectedContact={getContactInfo()}
+        showNext={selectedContact !== list.length - 1}
+        showPrev={selectedContact !== 0}
+        hasContent={list && !!list.length}
+        onNext={onNext}
+        onPrev={onPrev}
     />
 };
 

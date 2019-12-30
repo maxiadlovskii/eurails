@@ -1,13 +1,14 @@
 @import "../../../styles/vars";
 
 .button {
-    background-color: white;
+    background-color: $main-color;
     padding: 5px 10px;
-    border: 1px solid black;
+    border: 1px solid $forth-color;
     cursor: pointer;
+    z-index: 3;
     &.buy {
         padding: 10px;
-        color: $price-color;
-        background-color: $buy-button;
+        color: $main-color;
+        background-color: $forth-color;
     }
 }

@@ -11,8 +11,13 @@ export const ContactList = ({
                                 onItemClick,
                                 isModalVisible,
                                 selectedContact,
-                                onModalClose
-}) => list && list.length ? <article className={styles.list}>
+                                onModalClose,
+                                showNext,
+                                showPrev,
+                                hasContent,
+                                onNext,
+                                onPrev
+}) => hasContent ? <article className={styles.list}>
     {
         list.map( ({
                        [contactsModel.NAME]: {
@@ -30,6 +35,14 @@ export const ContactList = ({
         />)
     }
     <Modal isVisible={isModalVisible} onClose={onModalClose}>
-        {!!selectedContact && <ContactDescription contact={selectedContact}/> }
+        {isModalVisible && selectedContact !== null
+        && <ContactDescription
+            contact={selectedContact}
+            showNext={showNext}
+            showPrev={showPrev}
+            onNext={onNext}
+            onPrev={onPrev}
+        />
+        }
     </Modal>
 </article> : <Empty/>;

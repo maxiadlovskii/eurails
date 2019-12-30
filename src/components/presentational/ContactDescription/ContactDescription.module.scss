@@ -1,6 +1,6 @@
 @import "../../../styles/vars";
 
-.wrapper {
+.content {
   min-width: 200px;
   min-height: 300px;
   display: flex;
@@ -47,6 +47,13 @@
   display: flex;
 }
 
+.buttons {
+  display: flex;
+  .separator {
+    flex-grow: 1;
+  }
+
+}
 @media screen and (max-width: $max-width) {
   .wrapper{
     align-items: center;

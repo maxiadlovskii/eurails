@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './ContactDescription.module.scss'
 import {Avatar} from "../../common/Avatar/Avatar";
 import classNames from 'classnames';
+import {Button} from "../../common/Button/Button";
 
 const AdditionItem = ({ name, value }) => <li
     key={`${name}_${value}`}
@@ -12,10 +13,12 @@ const AdditionItem = ({ name, value }) => <li
     </li>
 
 export const ContactDescription = ({ contact:
-    { lastName, firstName, picture, userName, additionInfo } }) => {
-    return (
+    { lastName, firstName, picture, userName, additionInfo },
+    showNext, showPrev, onNext, onPrev},
+) => (
         <div className={styles.wrapper}>
-                <Avatar picture={picture}/>
+            <div className={styles.content}>
+            <Avatar picture={picture}/>
             <div className={styles.infoBlock}>
                 <h3 className={styles.header}>
                     <span className={styles.lastName}>{lastName}</span>, <span>{firstName}</span>
@@ -29,5 +32,10 @@ export const ContactDescription = ({ contact:
             </div>
                 <AdditionItem name="userName" value={userName}/>
             </div>
+            <div className={styles.buttons}>
+                {showPrev && <Button onClick={onPrev}>Prev</Button>}
+                <div className={styles.separator}></div>
+                {showNext && <Button onClick={onNext}>Next</Button>}
+            </div>
+        </div>
     );
-};
