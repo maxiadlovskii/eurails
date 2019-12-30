@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useMemo, useState} from 'react'
 import {connect} from "react-redux";
 import {ContactList} from "../presentational/ContactList/ContactList";
 import {useRouter} from "../../hooks";
 import { linkParams } from '.././../constants/routerLinks'
 import { mapContact } from '../../utils'
-import {ContactDescription} from "../presentational/ContactDescription/ContactDescription";
 
 const  ContactListContainer= ({ collection }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -14,18 +13,26 @@ const  ContactListContainer= ({ collection }) => {
         match: {
         params: { [linkParams.LETTER]: letter }
     }} = useRouter();
-    const closeModal = () => {
+
+    const closeModal = useCallback(() => {
         isModalVisible && setIsModalVisible(false);
         setSelectedContact !== null && setSelectedContact(null)
-    };
+    }, [isModalVisible]);
+
+    const changeCollection = useCallback(letter => {
+        collection && collection.get(letter) && setList(collection.get(letter))
+    }, [collection]);
+
     const openModal = () => {
         !isModalVisible && setIsModalVisible(true);
     };
 
-    useEffect(()=>{
-        closeModal();
-        setList(collection.get(letter))
-    }, [letter]);
+    useMemo(()=>{
+        setIsModalVisible(false);
+        changeCollection(letter);
+        setSelectedContact(null)
+    }, [letter, changeCollection]);
+
     const onNext = () => {
         setSelectedContact(selectedContact + 1)
     };
