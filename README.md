@@ -1,4 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Settings
+in `src/settings.js` posiible to change default alphabet and query for requests according to https://randomuser.me/documentation
+f.e.
+export const settings = {
+   alphabet: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
+   randomUserQuery: {
+       results: 1500,
+       nat: 'us'
+   }
+};
 
 ## Available Scripts
 
