@@ -1,4 +1,4 @@
-import React, { useEffect }  from "react";
+import React from "react";
 import { Route, Switch, Redirect } from 'react-router-dom'
 import {linkParams, links} from "../../constants/routerLinks";
 import {connect} from "react-redux";
@@ -7,20 +7,27 @@ import { Failed } from "../common/Failed/Failed";
 import '../../styles/global.module.scss'
 import { EmptyPage } from './Empty/Empty'
 import { ContactListPage } from "./ContactList/ContactList";
-import App from '../containers/App'
 import {skeletons} from "../../constants";
 
 const routes = [
-    { path: `${links.LIST}/:${linkParams.LETTER}`, component: ContactListPage},
-    { path: links.LIST, component: EmptyPage}
+    {
+        path: `${links.LIST}/:${linkParams.LETTER}`,
+        component: ContactListPage,
+        loader: skeletons.CONTACT_LIST
+    },
+    {
+        path: links.LIST,
+        component: EmptyPage,
+        loader: skeletons.CONTACT_LIST
+    }
 ];
 
 const  MainRoute = ({ isFailed, isFetching, isSucceed }) => {
     return (
             <Switch>
-                {routes.map(({ path, component }) => {
+                {routes.map(({ path, component, loader }) => {
                     const Component = isFetching
-                        ? () => <Loader type={skeletons.CONTACT_LIST}/>
+                        ? () => <Loader type={loader}/>
                         : isSucceed
                             ? component
                             : isFailed

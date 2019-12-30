@@ -1,5 +1,5 @@
 import { links as routerLinks } from '../constants/routerLinks'
-import {letters} from "../constants";
+import { settings } from "../settings";
 import {contactsModel} from "../constants/apiModels";
 
 export const getLinks = mapCollection => {
@@ -16,7 +16,7 @@ export const getLinks = mapCollection => {
     return links
 };
 
-export const getDefaultCollection = () => letters.reduce((map, letter) => {
+export const getDefaultCollection = () => settings.alphabet.reduce((map, letter) => {
         map.set(letter, []);
         return map
     }, new Map([]));

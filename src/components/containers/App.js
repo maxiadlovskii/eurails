@@ -6,7 +6,7 @@ import { getContacts } from '../../redux/actions/contacts'
 
 
 const AppContainer = ({ children, getContacts, collection, isFailed, isFetching, isSucceed }) => {
-    useEffect(() => { getContacts() }, []);
+    useEffect(() => { getContacts() }, [getContacts]);
     return <App
         links={getLinks(collection)}
         isFailed={isFailed}
